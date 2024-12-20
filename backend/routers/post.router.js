@@ -4,5 +4,7 @@ const postController = require("../controllers/post.controller");
 const { upload } = require("../middlewares/file.middlewares");
 const authJwt = require("../middlewares/authJwt.middleware");
 //http://localhost:5000/api/v1/post
-router.post(""), authJwt.verifyToken, upload, postController.createPost
+router.post("", authJwt.verifyToken, upload, postController.createPost);
+router.get("", postController.getPosts);
+
 module.exports = router;

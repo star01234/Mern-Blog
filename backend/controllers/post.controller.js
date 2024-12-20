@@ -18,3 +18,11 @@ exports.createPost = async (req, res) => {
     const postDoc = await PostModel.create({title, summary, cover, author});
     res.json(postDoc);
 }
+
+exports.getPosts = async (req, res) => {
+    const posts = await PostModel.find()
+    .populate("author", ["username"])
+    .sort({ createAt: -1 })
+    .limit(20)
+res.json(posts);
+};

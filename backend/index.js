@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Welcome to SE NPRU BLOG Restful API</h1>");
 });
 
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //สั่งให้ทำงาน
 app.use("/api/v1/auth", userRouter);
