@@ -4,18 +4,20 @@ require("dotenv").config();
 const secret = process.env.SECRET;
 
 exports.createPost = async (req, res) => {
-    const token = rep.headers["x-access-token"];
-    if(!token){
-        return res.status(401).json({message:"Token is missing"})
-    }
-    //file upload
     const {path: cover} = req.file;
     const author = req.userId;
     const {title, summary, content} = req.body
-    if(!title || !summary || !content) { return res.status(400).json({message:"All Fields is required"});
+
+    if(!title || !summary || !content) { 
+        return res.status(400).json({message:"All Fields is required"});
     }
     
-    const postDoc = await PostModel.create({title, summary, cover, author});
+    const postDoc = await PostModel.create({
+        title,
+        summary, 
+        content, 
+        cover,
+        author});
     res.json(postDoc);
 }
 
@@ -26,3 +28,9 @@ exports.getPosts = async (req, res) => {
     .limit(20)
 res.json(posts);
 };
+
+exports.getPostsById = async (req, res) => {
+    const { id } = req.params;
+    const postDoc = await PostModel.findById(id).populate ("auther", ["username"]);
+    res.json(postDoc);
+}
