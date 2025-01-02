@@ -23,7 +23,7 @@ const Login = () => {
     setUser((user) => ({ ...user, [name]: value }));
   };
 
-  const handdleSubmit = async () => {
+  const handleSubmit = async () => {
     try {
       const currentUser = await AuthService.login(user.username, user.password);
       console.log(currentUser);
@@ -85,17 +85,10 @@ const Login = () => {
         {/* Login button */}
         <button
           className="w-full transform rounded-sm bg-indigo-600 py-2 text-white font-bold duration-300 hover:bg-indigo-400 focus:outline-none"
-          onClick={handdleSubmit}
+          onClick={handleSubmit}
         >
           LOG IN
         </button>
-
-        {/* Forgot Password link */}
-        <div className="text-center">
-          <a href="#" className="text-sm text-indigo-500 hover:text-indigo-400">
-            Forgot Password?
-          </a>
-        </div>
 
         {/* Create Account section */}
         <p className="text-center text-lg">
@@ -104,7 +97,7 @@ const Login = () => {
             href="#"
             className="font-medium text-indigo-500 underline hover:text-indigo-400"
           >
-            Create One
+            Create
           </a>
         </p>
       </div>

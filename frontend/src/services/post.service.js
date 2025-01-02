@@ -18,10 +18,18 @@ const getPostById = async (id) => {
   return await api.get(`${API_URL}/${id}`);
 };
 
+
+const updatePostById = async (id) => {
+  return await api.put(`${API_URL}/${id}`);
+};
+
+
+
 const PostService = {
   createPost,
   getPost,
   getPostById,
+  updatePostById,
 };
 
 export default PostService;
